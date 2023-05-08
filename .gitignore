@@ -1,0 +1,12 @@
+*.txt
+*.dat
+*.raw
+*.o
+*.mp4
+
+**/.git
+**/logs
+**/plots
+**/data
+**/videos
+
