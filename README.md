@@ -176,7 +176,7 @@ Note: It is reccommended to open this readme with a markdown viewer
 > *Addionally gather-data.py does not support stacked raw file creation, use manual method or create-video.py*
 ---
 
-### [Expanse Cluster] 
+### [SLURM Environments] 
 >#### 1. Setup python script parameters and sbatch flags in "submit_all.bash"
 >- set matrix size string list param (generate-matrix.py)
 >   - `MAT="5000,10000,20000,40000"` 

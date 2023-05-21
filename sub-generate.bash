@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name="generate_matrix"
 #SBATCH --output="generate_matrix.%j.%N.out"
-#SBATCH --partition=shared
-#SBATCH --account=ccu107
+#SBATCH --partition=#
+#SBATCH --account=#
 #SBATCH --mem=128GB
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1

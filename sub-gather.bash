@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name="gather_data"
 #SBATCH --output="gather_data.%j.%N.out"
-#SBATCH --account=ccu107 
-#SBATCH --partition=shared 
+#SBATCH --account=#
+#SBATCH --partition=#
 #SBATCH --nodes=1 
 #SBATCH -t 00:05:00 
 #SBATCH --export=ALL 
