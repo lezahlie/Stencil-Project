@@ -167,8 +167,6 @@ Note: It is reccommended to open this readme with a markdown viewer
 
 ## Part 1: Data Gathering
 
----
-
 ### [Local Machine]
 
 ---
@@ -211,8 +209,6 @@ Note: It is reccommended to open this readme with a markdown viewer
 
 </details>
 
----
-
 ### [SLURM Environments] 
 
 ---
@@ -239,11 +235,8 @@ Note: It is reccommended to open this readme with a markdown viewer
 
 </details>
 
----
 
 ## Part 2: Data Analysis 
-
----
 
 ### [Local Machine Only]
 
