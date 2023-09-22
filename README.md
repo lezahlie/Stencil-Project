@@ -9,7 +9,7 @@ Note: It is reccommended to open this readme with a markdown viewer
 # Prequsite Installations (Ubuntu-Debian)
 *Note: Documentation links included for other environment installations*
 > Update OS Packages First!
->- `sudo apt update` 
+>- `sudo apt update && sudo apt upgrade` 
 >
 >[OpenMPI](https://docs.open-mpi.org/en/v5.0.x/installing-open-mpi/quickstart.html)
 >- `sudo apt install openmpi-bin openmpi-dev openmpi-common openmpi-doc libopenmpi-dev`
@@ -39,8 +39,9 @@ Note: It is reccommended to open this readme with a markdown viewer
 # Project Files Overview
 
 ### GCC Programs 
-
 ---
+
+<details>
 
 *Note: `<arg>` is an input, `[arg]` is optional, `arg1 | arg2` means arg1 or arg2.*
 
@@ -63,9 +64,15 @@ Note: It is reccommended to open this readme with a markdown viewer
 - `Usage: `
 - OpenMPI version of 9-pt stencil algorithm
 
+</details>
+
+---
+
 ### GCC Utility & Header Files
 
 ---
+
+<details>
 
 1. utilities.c
 - User defined functions shared utilized by entire project
@@ -78,9 +85,17 @@ Note: It is reccommended to open this readme with a markdown viewer
 - "utilities.h" is linked here, giving access to all prototype functions
 5. timer.h
 - Gets the current time in microseconds
+
+</details>
+
+---
+
 ### Python Scripts 
 
 ---
+
+<details>
+
 *Note: All pythons scripts save output to log files in `./logs/` subfolder*
 1. generate-matrix.py
 - `Usage: python3 generate-matrix.py <#rows/cols>`
@@ -116,9 +131,15 @@ Note: It is reccommended to open this readme with a markdown viewer
 - Diffs final matrix files for "stencil-2d" and "pthread-stencil-2d"
 - Diffs "pthread-stencil-2d" and "mpi-stencil-2d" to cross check
 
+</details>
+
+---
+
 ### Slurm Job Scheduling Scripts 
 
 ---
+
+<details>
 
 1. submit-jobs.bash
 - `Usage: bash ./submit-jobs.bash`
@@ -138,16 +159,23 @@ Note: It is reccommended to open this readme with a markdown viewer
 - Job script to run stencil programs
 - runs "gather-data.py" for 
 
+</details>
+
+---
 
 # Project Usage and How to Guides
-
 
 ## Part 1: Data Gathering
 
 ---
 
 ### [Local Machine]
+
+---
+
 #### Manual Method:
+<details>
+
 >#### 1. Compile programs with Makefile
 > - Run: `make` | `make all` 
 >#### 2. Create a matrix with make-2D
@@ -156,11 +184,17 @@ Note: It is reccommended to open this readme with a markdown viewer
 > - Run: `./pth-stencil-2d <num_iterations> <infile> <outfile> <debug_level[0-2]> <num_threads> <all_stacked_file(optional)>`
 >#### 4. Run mpi-stencil-2d
 > - Run: `mpirun -np <num processes> ./mpi-stencil-2d <num_iterations> <infile> <outfile> <debug_level[0-2]> <all_stacked_file(optional)>`
+
+</details>
+
 #### Script Method:
+
+<details>
+
 >#### 1. Compile programs with Makefile
 > - Run: `make` | `make all` 
->#### 2. Create matrices with gather-matrix.py
-> - Run: `./make-2d <rows> <cols> <outfile>`
+>#### 2. Create matrices with generate-matrix.py
+> - Run: `python3 generate-matrix.py <#rows/cols>`
 > - Script will automatically generate output file names as `./mat-[size].dat`
 > - All files are stored in project files directory
 >#### 3. Run gather-data.py for pthreads
@@ -174,9 +208,17 @@ Note: It is reccommended to open this readme with a markdown viewer
 >
 > *Note: Python Scripts only support square matrices, must use manual method to compute non square matrices*
 > *Addionally gather-data.py does not support stacked raw file creation, use manual method or create-video.py*
+
+</details>
+
 ---
 
 ### [SLURM Environments] 
+
+---
+
+<details>
+
 >#### 1. Setup python script parameters and sbatch flags in "submit_all.bash"
 >- set matrix size string list param (generate-matrix.py)
 >   - `MAT="5000,10000,20000,40000"` 
@@ -195,12 +237,20 @@ Note: It is reccommended to open this readme with a markdown viewer
 >
 >*Note: This will submit individual jobs for both pthreads and mpi automatically*
 
+</details>
+
+---
 
 ## Part 2: Data Analysis 
 
 ---
 
 ### [Local Machine Only]
+
+---
+
+<details>
+
 >#### 1. Pthreads Performance
 > - Ensure `./data/pthread_stencil_data.txt` generated from "gather_data.py" exists
 > - Run: `python3 ./analyze-data.py mpi`
@@ -223,5 +273,8 @@ Note: It is reccommended to open this readme with a markdown viewer
 >   - Script will create a raw file named `[rows]-[cols]-[iterations].raw`
 > - The generated video will save in `./videos/` subfolder
 > - Video name is auto generated as `heatmap-[rows]x[cols]x[iterations].mp4`
+>
 > *Note: create-video.py uses pth-stencil-2d with 2 threads to generate raw files*
 > *If the above is not preferred, please used the manual method to create raw file*
+
+</details>
